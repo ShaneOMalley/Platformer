@@ -1,0 +1,130 @@
+; Usage :
+;; Full Earth - 0
+;; Sprite Data
+; frame0 frame1 frame2 ... frameN
+;; Tile Data
+;; startHeight (as a factor of height. e.g: 1 = full height, 0.25 = quarter height)
+; startHeight
+;; Other
+; angle solid visible oneWay
+
+; Example :
+;; Full Earth - 1
+;; Sprite Data
+; 1
+;; startHeight
+; 1
+;; Other
+; 0 1 1 0
+
+; Air - 0
+; Sprite Data
+0
+; startHeight
+0
+; Other
+0 0 0 0
+
+; Full Earth - 1
+; Sprite Data
+1
+; startHeight
+1
+; Other
+0 1 1 0
+
+; Top of Earth - 2
+; Sprite Data
+6
+; startHeight
+1
+; Other
+0 1 1 0
+
+; 1/3 slope 1 - 3
+; Sprite Data
+7
+; startHeight
+1
+; Other
+18.43495 1 1 0
+
+; 1/3 slope 2 - 4
+; Sprite Data
+8
+; startHeight
+0.66667
+; Other
+18.43495 1 1 0
+
+; 1/3 slope 3 - 5
+; Sprite Data
+9
+; startHeight
+0.33333
+; Other
+18.43495 1 1 0
+
+; 1/2 slope 1 - 6
+; Sprite Data
+10
+; startHeight
+1
+; Other
+26.56506 1 1 0
+
+; 1/2 slope 2 - 7
+; Sprite Data
+11
+; startHeight
+0.5
+; Other
+26.56506 1 1 0
+
+; 1/3 slope meet ground - 8
+; Sprite Data
+3
+; startHeight
+1
+; Other
+0 1 1 0
+
+; 1/2 slope meet ground - 9
+; Sprite Data
+5
+; startHeight
+1
+; Other
+0 1 1 0
+
+; block - 13
+; Sprite Data
+2
+; startHeight
+1
+; other
+0 1 1 0
+
+; animated 1 - 10
+; Sprite Data
+9 8 7
+; startHeight
+1
+; other
+0 1 1 0
+
+; animated 2 - 11
+; Sprite Data
+8 7 9
+; startHeight
+1
+; other
+0 1 1 0
+
+; animated 3 - 12
+; Sprite Data
+7 9 8
+; startHeight
+1
+; other
+0 1 1 0

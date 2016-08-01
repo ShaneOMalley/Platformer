@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LevelData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <tiles>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>5</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>8</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>2</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>7</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>9</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>6</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>true</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>6</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>7</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>9</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>6</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>7</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>9</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>3</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>4</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>5</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>8</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>3</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>4</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>5</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>8</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>2</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+  </tiles>
+  <entities>
+    <EntityData>
+      <id>0</id>
+      <positionX>92</positionX>
+      <positionY>775</positionY>
+    </EntityData>
+  </entities>
+</LevelData>
