@@ -65,7 +65,7 @@ namespace Platformer.Components
                 //if (!grounded)
                 //    return new Vector2(12, 30 - 4f*2) * 3;
                 //else
-                    return new Vector2(12, 24 - 6f) * 3;
+                    return new Vector2(12, 24 - 8f) * 3;
             }
         }
 
