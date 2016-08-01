@@ -85,6 +85,10 @@ namespace Editor
             SaveFileDialog fd = new SaveFileDialog();
             fd.Filter = "Shane O' Malley Files (*.som)|*.som|All Files (*.*)|*.*";
 
+            string gameLevelDirectory = Directory.GetCurrentDirectory() + "/../../../Platformer/bin/Windows/x86/Debug/Data/levels";
+            if (Directory.Exists(gameLevelDirectory))
+                fd.InitialDirectory = gameLevelDirectory;
+
             if (fd.ShowDialog() == DialogResult.OK)
             {
                 using (Stream stream = fd.OpenFile())
@@ -100,6 +104,10 @@ namespace Editor
         {
             OpenFileDialog fd = new OpenFileDialog();
             fd.Filter = "Shane O' Malley Files (*.som)|*.som|All Files (*.*)|*.*";
+
+            string gameLevelDirectory = Directory.GetCurrentDirectory() + "/../../../Platformer/bin/Windows/x86/Debug/Data/levels";
+            if (Directory.Exists(gameLevelDirectory))
+                fd.InitialDirectory = gameLevelDirectory;
 
             if (fd.ShowDialog() == DialogResult.OK)
             {

@@ -51,10 +51,10 @@ namespace Platformer.Components
         {
             get
             {
-                if (!grounded && false)
-                    return position + new Vector2(7, 0 + 2f) * 3;
-                else
-                    return position + new Vector2(7, 6 + 2f) * 3;
+                //if (!grounded)
+                //    return position + new Vector2(7, 0 + 2f) * 3;
+                //else
+                    return position + new Vector2(7, 8f) * 3;
             }
         }
 
@@ -62,10 +62,10 @@ namespace Platformer.Components
         {
             get
             {
-                if (!grounded && false)
-                    return new Vector2(12, 30 - 4f*2) * 3;
-                else
-                    return new Vector2(12, 24 - 4f*2) * 3;
+                //if (!grounded)
+                //    return new Vector2(12, 30 - 4f*2) * 3;
+                //else
+                    return new Vector2(12, 24 - 6f) * 3;
             }
         }
 
@@ -139,10 +139,6 @@ namespace Platformer.Components
             bool left = InputHandler.KeyDown(Keys.Left) || InputHandler.ButtonDown(Buttons.DPadLeft, PlayerIndex.One);
             bool right = InputHandler.KeyDown(Keys.Right) || InputHandler.ButtonDown(Buttons.DPadRight, PlayerIndex.One);
             bool jump = InputHandler.KeyPressed(Keys.Space) || InputHandler.ButtonPressed(Buttons.A, PlayerIndex.One);
-
-            /* debug up/down */
-            bool up = InputHandler.KeyDown(Keys.Up) || InputHandler.ButtonDown(Buttons.DPadUp, PlayerIndex.One);
-            bool down = InputHandler.KeyDown(Keys.Down) || InputHandler.ButtonDown(Buttons.DPadRight, PlayerIndex.One);
 
             // reset position
             if (InputHandler.KeyPressed(Keys.Q))
