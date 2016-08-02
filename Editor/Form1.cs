@@ -82,41 +82,56 @@ namespace Editor
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /* initialize the file dialog */
             SaveFileDialog fd = new SaveFileDialog();
             fd.Filter = "Shane O' Malley Files (*.som)|*.som|All Files (*.*)|*.*";
 
-            string gameLevelDirectory = Directory.GetCurrentDirectory() + "/../../../Platformer/bin/Windows/x86/Debug/Data/levels";
-            if (Directory.Exists(gameLevelDirectory))
-                fd.InitialDirectory = gameLevelDirectory;
+            /* set the path to start in the game's level directory */
+            string path = Directory.GetCurrentDirectory();
+            path = path.Substring(0, path.Length - 17);
+            path += @"\Platformer\bin\Windows\x86\Debug\Data\levels";
 
+            /* set the initial directory of the file dialog, if it exists */
+            if (Directory.Exists(path))
+                fd.InitialDirectory = path;
+
+            /* show the dialog, and save the level to the file chosen or created by the user */
             if (fd.ShowDialog() == DialogResult.OK)
             {
                 using (Stream stream = fd.OpenFile())
                     Serialization.Serialize<LevelData>(stream, levelData);
             }
 
+            /* free any resources used by the file dialog */
             fd.Dispose();
-
-            Draw();
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /* initialize the file dialog */
             OpenFileDialog fd = new OpenFileDialog();
             fd.Filter = "Shane O' Malley Files (*.som)|*.som|All Files (*.*)|*.*";
 
-            string gameLevelDirectory = Directory.GetCurrentDirectory() + "/../../../Platformer/bin/Windows/x86/Debug/Data/levels";
-            if (Directory.Exists(gameLevelDirectory))
-                fd.InitialDirectory = gameLevelDirectory;
+            /* set the path to start in the game's level directory */
+            string path = Directory.GetCurrentDirectory();
+            path = path.Substring(0, path.Length - 17);
+            path += @"\Platformer\bin\Windows\x86\Debug\Data\levels";
 
+            /* set the initial directory of the file dialog if it exists */
+            if (Directory.Exists(path))
+                fd.InitialDirectory = path;
+
+            /* show the dialog, and load the level using the file chosen by the user */
             if (fd.ShowDialog() == DialogResult.OK)
             {
                 using (Stream stream = fd.OpenFile())
                     levelData = Serialization.Deserialize<LevelData>(stream);
             }
 
+            /* free any resources used by the file dialog */
             fd.Dispose();
 
+            /* draw the level after loading it */
             Draw();
         }
 
