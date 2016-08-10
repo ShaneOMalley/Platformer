@@ -80,6 +80,7 @@ namespace Editor
             lvEntities.SelectedIndices.Clear();
         }
 
+        /* save the level as an .som file on disk */
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             /* initialize the file dialog */
@@ -106,6 +107,7 @@ namespace Editor
             fd.Dispose();
         }
 
+        /* load a level from a .som file on disk */
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             /* initialize the file dialog */
@@ -135,24 +137,73 @@ namespace Editor
             Draw();
         }
 
+        /* clear all tiles and entities from the level, and set the grid size */
         private void newLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             levelData.ClearTiles();
+            levelData.ClearEntities();
             levelData.ResizeTiles(15, 15);
 
             Draw();
         }
 
+        /* resize the tile grid */
         private void resizeLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             /* Show the resize level dialog */
-            using (FormResize formResize = new FormResize())
+            using (FormResize formResize = new FormResize(levelData.tiles.Length, levelData.tiles[0].Length))
             {
                 DialogResult result = formResize.ShowDialog();
                 
                 if (result == DialogResult.OK)
                 {
                     levelData.ResizeTiles(formResize.GridWidth, formResize.GridHeight);
+                }
+            }
+
+            Draw();
+        }
+
+        /* move all tiles and entities in the level by a certain amount */
+        private void shiftLevelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (FormShift formShift = new FormShift())
+            {
+                DialogResult result = formShift.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    int right = formShift.RightShift;
+                    int down = formShift.DownShift;
+
+                    IndividualTileData[][] oldTiles = levelData.tiles;
+                    IndividualTileData[][] newTiles = new IndividualTileData[oldTiles.Length][];
+                    for (int i = 0; i < newTiles.Length; i++)
+                        newTiles[i] = new IndividualTileData[oldTiles[i].Length];
+
+                    /* Loop through all tiles, replacing each with the one at relative position (-left, -down) */
+                    for (int i = 0; i < newTiles.Length; i++)
+                    {
+                        for (int j = 0; j < newTiles[0].Length; j++)
+                        {
+                            if (i - right < 0 || j - down < 0
+                                || i - right >= oldTiles.Length || j - down >= oldTiles[0].Length)
+                                newTiles[i][j] = null;
+                            else
+                            {
+                                newTiles[i][j] = oldTiles[i - right][j - down];
+                            }
+                        }
+                    }
+
+                    /* move each entity the same distance as the tiles are shifted */
+                    foreach (EntityData entity in levelData.entities)
+                    {
+                        entity.positionX += right * Globals.TileSize;
+                        entity.positionY += down * Globals.TileSize;
+                    }
+
+                    levelData.tiles = newTiles;
                 }
             }
 
@@ -210,8 +261,8 @@ namespace Editor
                     EntityData entity = levelData.entities[ent];
                     
                     Rectangle rect = new Rectangle(
-                        (int)(entity.positionX * zoom - cameraX),
-                        (int)(entity.positionY * zoom - cameraY),
+                        (int)((entity.positionX - cameraX) * zoom),
+                        (int)((entity.positionY - cameraY) * zoom),
                         (int)(entitySize * zoom),
                         (int)(entitySize * zoom));
                     if (rect.Contains(e.X, e.Y))

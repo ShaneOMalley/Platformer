@@ -20,6 +20,10 @@ When you open the game, you will need to move up and down with the arrow keys or
 
 The controls as they are at the moment are pretty simple: `Left` and `Right` Keys to move left and right, and `Space` to jump. You can also use the d-pad and 'A' button on an XBox controller to move and jump also.
 
+You can also shoot with `Right Bumper` or `Enter`, and aim with the right analog stick (there is no way to aim without a gamepad as of yet, but I will implement that later)
+
+Bullets will make the player 'jump' if they are shot downwards. Bullets will also bounce off walls and sloped floors accurately, but in certain cases, the bullet will go through the wall, and perhaps get stuck. I will work on a fix soon
+
 I also left in some debugging stuff, If you hold `R` while playing, the game will 'pause', and If you press `E` while holding `R`, the game will logic will advance to the next frame. If you press `Q` the player will return to the spawn point. If you press `T` "debug drawing mode" will be toggle on and off. When debug drawing mode is on: 
 
 * The collision box used for checking collisions with walls will be drawn in red (or blue if the player is colliding with something)
@@ -28,7 +32,7 @@ I also left in some debugging stuff, If you hold `R` while playing, the game wil
 
 * a purple square will be drawn at the player's spawn point 
 
-* a tile will get highlighted in purple when a player collides with it (only wall collision)
+* tiles which are used in collision detection for a bullet will be highlighted in purple
 
 * white dots will be drawn at the points where ceiling and ground collision is checked
 
@@ -41,6 +45,6 @@ To select an entity/tile for placing, select it from one of the two ListView box
 
 The only entity available for placing at the moment is the player's spawn point.
 
-You can also start a new level, or resize the grid of the current level
+You can also start a new level resize the grid of the current level, or 'shift' the tiles and entities of the current level by a certain amount
 
 Levels are stored in the `Platformer\bin\Windows\x86\Debug\Data\levels` and the Editor navigates into this folder automatically when loading or saving levels

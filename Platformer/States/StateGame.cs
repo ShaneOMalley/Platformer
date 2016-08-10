@@ -87,7 +87,8 @@ namespace Platformer.States
         private void SetUpCamera()
         {
             /* Set up the camera */
-            camera = new Camera(player, Globals.WindowWidth, Globals.WindowHeight, CameraMode.Lerp);
+            Vector2 cameraMax = new Vector2(level.Tiles.GetLength(1) * Globals.TileSize, level.Tiles.GetLength(0) * Globals.TileSize);
+            camera = new Camera(player, Globals.WindowWidth, Globals.WindowHeight, CameraMode.Lerp, Vector2.Zero, cameraMax);
         }
 
         protected override void Initialize()

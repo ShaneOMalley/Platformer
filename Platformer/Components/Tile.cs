@@ -25,10 +25,39 @@ namespace Platformer.Components
         protected bool oneWay;
 
         public bool DebugDraw = false;
+        public Color DebugColor = Color.Purple;
 
         #endregion
 
         #region Property Region
+
+        public Vector2 LeftWallTop
+        {
+            get { return position + new Vector2(0.1f, (1 - startHeight) * size.Y); }
+        }
+
+        public Vector2 LeftWallBottom
+        {
+            get { return position + new Vector2(0, size.Y); }
+        }
+
+        public Vector2 RightWallTop
+        {
+            get
+            {
+                return position + new Vector2(
+                    size.X,
+                    (float)(1f - startHeight + Math.Tan(MathHelper.ToRadians(angle))) * size.Y
+                    );
+                //return position + new Vector2(size.X, 0);
+            }
+        }
+
+        public Vector2 RightWallBottom
+        {
+            get { return position + size; }
+        }
+
         #endregion
 
         #region Constructor Region
@@ -164,9 +193,52 @@ namespace Platformer.Components
             return -(size.Y - dy - h);
         }
 
+        public void getIntersectionData(Vector2 p1, Vector2 p2, out Vector2? poi, out float angle)
+        {
+            if (solid)
+            {
+                Vector2[,] sides = new Vector2[,]
+                    {
+                        { LeftWallBottom, LeftWallTop },
+                        { RightWallBottom, LeftWallBottom },
+                        { RightWallTop, RightWallBottom },
+                        { LeftWallTop, RightWallTop},
+                    };
+
+                float rayAng = Utils.AngleBetweenPoints(p1, p2);
+                for (int sideNo = 0; sideNo < sides.GetLength(0); sideNo++)
+                {
+                    float normalAng = Utils.AngleBetweenPoints(sides[sideNo, 0], sides[sideNo, 1]) - 90;
+
+                    /* only check for collision if the normal of the side opposes the angle of the ray */
+                    if (rayAng > (normalAng - 90) % 360 && rayAng < (normalAng + 90) % 360)
+                        continue;
+
+                    Vector2? intersection = Utils.GetIntersection(p1, p2, sides[sideNo, 0], sides[sideNo, 1]);
+
+                    if (intersection != null)
+                    {
+                        poi = (Vector2)intersection;
+                        angle = Utils.GetAngle(p1, p2, sides[sideNo, 0], sides[sideNo, 1]);
+                        return;
+                    }
+                }
+            }
+
+            poi = null;
+            angle = 0;
+        }
+
         #endregion
 
         #region Virtual Method region
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            DebugDraw = false;
+        }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
@@ -174,7 +246,7 @@ namespace Platformer.Components
             
             /* highlight if needed, and if debug drawing mode is enabled */
             if (Globals.DebugMode && DebugDraw)
-                DebugDrawing.DrawRectangle(spriteBatch, Rectangle, Color.Purple, 0.5f);
+                DebugDrawing.DrawRectangle(spriteBatch, Rectangle, DebugColor, 0.5f);
         }
 
         #endregion

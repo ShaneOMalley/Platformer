@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LevelData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <tiles>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData>
+        <id>1</id>
+        <flipHorizontal>false</flipHorizontal>
+      </IndividualTileData>
+    </ArrayOfIndividualTileData>
+    <ArrayOfIndividualTileData>
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+      <IndividualTileData xsi:nil="true" />
+    </ArrayOfIndividualTileData>
+  </tiles>
+  <entities>
+    <EntityData>
+      <id>0</id>
+      <positionX>107</positionX>
+      <positionY>49</positionY>
+    </EntityData>
+  </entities>
+</LevelData>

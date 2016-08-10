@@ -35,3 +35,5 @@ C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Editor\bin\Debug
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Editor\bin\Debug\SharpDX.Direct3D9.xml
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Editor\bin\Debug\Content\fonts\arial.xnb
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Editor\obj\Debug\Editor.FormResize.resources
+C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Editor\obj\Debug\Editor.FormShift.resources
+C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Editor\bin\Debug\Content\images\entities\rocket.xnb

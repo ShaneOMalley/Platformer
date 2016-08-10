@@ -29,3 +29,4 @@ C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\W
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\Content\images\terrain\terrain.xnb
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\Platformer.exe.config
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\Content\fonts\arial.xnb
+C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\Content\images\entities\rocket.xnb

@@ -1,4 +1,6 @@
 ﻿using System;
+using SimpleGameLibrary;
+using Microsoft.Xna.Framework;
 
 namespace Platformer
 {
@@ -12,6 +14,8 @@ namespace Platformer
         [STAThread]
         static void Main()
         {
+            Console.WriteLine("Ya boobay, " + Math.Sign(0));
+
             /* Run the game */
             using (game = new Game1())
                 game.Run();

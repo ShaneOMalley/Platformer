@@ -61,11 +61,15 @@ namespace Platformer
         {
             /* Create a new SpriteBatch, which can be used to draw textures */
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            /* Load the game's content */
+            GameContent.LoadContent(Content);
         }
 
         /* Unload the content here */
         protected override void UnloadContent()
         {
+            GameContent.UnloadContent(Content);
         }
 
         /* Update the logic of the game */
@@ -83,6 +87,9 @@ namespace Platformer
                 Globals.DebugMode = !Globals.DebugMode;
 
             base.Update(gameTime);
+
+            if (Window != null)
+                Window.Title = Globals.nBullets + " Bullets on screen, " + gameTime.ElapsedGameTime.Milliseconds + "ms frame update";
         }
 
         /* Handle the drawing of the game */

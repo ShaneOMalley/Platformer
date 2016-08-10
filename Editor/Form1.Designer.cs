@@ -55,6 +55,8 @@
             this.cbEntitySnap = new System.Windows.Forms.CheckBox();
             this.cbFlipTile = new System.Windows.Forms.CheckBox();
             this.btnClearEntities = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.shiftLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,7 +122,8 @@
             this.saveToolStripMenuItem,
             this.loadToolStripMenuItem,
             this.newLevelToolStripMenuItem,
-            this.resizeLevelToolStripMenuItem});
+            this.resizeLevelToolStripMenuItem,
+            this.shiftLevelToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1053, 24);
@@ -210,6 +213,13 @@
             this.btnClearEntities.UseVisualStyleBackColor = true;
             this.btnClearEntities.Click += new System.EventHandler(this.btnClearEntities_Click);
             // 
+            // shiftLevelToolStripMenuItem
+            // 
+            this.shiftLevelToolStripMenuItem.Name = "shiftLevelToolStripMenuItem";
+            this.shiftLevelToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.shiftLevelToolStripMenuItem.Text = "S&hift Level";
+            this.shiftLevelToolStripMenuItem.Click += new System.EventHandler(this.shiftLevelToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,6 +262,8 @@
         private System.Windows.Forms.CheckBox cbEntitySnap;
         private System.Windows.Forms.CheckBox cbFlipTile;
         private System.Windows.Forms.Button btnClearEntities;
+        private System.Windows.Forms.ToolStripMenuItem shiftLevelToolStripMenuItem;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

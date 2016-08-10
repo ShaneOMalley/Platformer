@@ -34,12 +34,14 @@
             this.mtbHeight = new System.Windows.Forms.MaskedTextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbSize = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(58, 13);
+            this.label1.Location = new System.Drawing.Point(64, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 2;
@@ -48,7 +50,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(55, 39);
+            this.label2.Location = new System.Drawing.Point(61, 66);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 2;
@@ -56,7 +58,7 @@
             // 
             // mtbWidth
             // 
-            this.mtbWidth.Location = new System.Drawing.Point(102, 10);
+            this.mtbWidth.Location = new System.Drawing.Point(108, 37);
             this.mtbWidth.Mask = "000";
             this.mtbWidth.Name = "mtbWidth";
             this.mtbWidth.Size = new System.Drawing.Size(106, 20);
@@ -64,7 +66,7 @@
             // 
             // mtbHeight
             // 
-            this.mtbHeight.Location = new System.Drawing.Point(102, 36);
+            this.mtbHeight.Location = new System.Drawing.Point(108, 63);
             this.mtbHeight.Mask = "000";
             this.mtbHeight.Name = "mtbHeight";
             this.mtbHeight.Size = new System.Drawing.Size(106, 20);
@@ -73,7 +75,7 @@
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(63, 62);
+            this.btnOK.Location = new System.Drawing.Point(69, 89);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 4;
@@ -83,18 +85,37 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(144, 62);
+            this.btnCancel.Location = new System.Drawing.Point(150, 89);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(52, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Current Size:";
+            // 
+            // textBox1
+            // 
+            this.tbSize.Enabled = false;
+            this.tbSize.Location = new System.Drawing.Point(125, 11);
+            this.tbSize.Name = "textBox1";
+            this.tbSize.Size = new System.Drawing.Size(100, 20);
+            this.tbSize.TabIndex = 6;
+            // 
             // FormResize
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 97);
+            this.ClientSize = new System.Drawing.Size(284, 121);
+            this.Controls.Add(this.tbSize);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.mtbHeight);
@@ -115,5 +136,7 @@
         private System.Windows.Forms.MaskedTextBox mtbHeight;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbSize;
     }
 }

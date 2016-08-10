@@ -114,9 +114,14 @@ namespace Platformer.Levels
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            /* Draw all the tiles */
             for (int y = 0; y < tiles.GetLength(0); y++)
                 for (int x = 0; x < tiles.GetLength(1); x++)
                     tiles[y, x].Draw(gameTime, spriteBatch);
+
+            /* Draw all the entities */
+            foreach (Entity entity in entities)
+                entity.Draw(gameTime, spriteBatch);
 
             if (Globals.DebugMode && PlayerSpawn != null)
             {
@@ -128,9 +133,25 @@ namespace Platformer.Levels
 
         public void Update(GameTime gameTime)
         {
+            /* Update all the tiles */
             for (int y = 0; y < tiles.GetLength(0); y++)
                 for (int x = 0; x < tiles.GetLength(1); x++)
                     tiles[y, x].Update(gameTime);
+
+            /* Update all the entities */
+            for (int i = 0; i < entities.Count; i++)
+            {
+                Entity e = entities[i];
+
+                if (e.Destroyed)
+                {
+                    entities.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+
+                e.Update(gameTime);
+            }
         }
 
         #endregion

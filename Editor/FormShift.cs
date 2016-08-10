@@ -10,23 +10,21 @@ using System.Windows.Forms;
 
 namespace Editor
 {
-    public partial class FormResize : Form
+    public partial class FormShift : Form
     {
-        public int GridWidth
+        public int RightShift
         {
-            get { return int.Parse(mtbWidth.Text); }
+            get { return (int)nudRight.Value; }
         }
 
-        public int GridHeight
+        public int DownShift
         {
-            get { return int.Parse(mtbHeight.Text); }
+            get { return (int)nudDown.Value; }
         }
 
-        public FormResize(int w, int h)
+        public FormShift()
         {
             InitializeComponent();
-
-            tbSize.Text = string.Format("width:{0}, height{1}", w, h);
         }
     }
 }

@@ -29,12 +29,18 @@ namespace Platformer.Components
         
         private float xSpeed = 0;
         private float ySpeed = 0;
-        private float topSpeed = 6;
-        private float acceleration = 10f;
-        private float deceleration = 10f;
-        private float gravity = 0.75f;
-        private float terminalVelocity = 12f;
-        private float jumpPower = 24f;
+        private const float topSpeed = 6;
+        private const float acceleration = 1f;
+        private const float deceleration = 1.5f;
+        private const float decelerationAir = 0.25f;
+        private const float gravity = 0.75f;
+        private const float terminalVelocity = 12f;
+        private const float jumpPower = 24f;
+
+        private const float rocketSpeed = 20f;
+        private const float shootKnockBack = 12f;
+        private const int shootCoolDownMax = 1;
+        private int shootCoolDown = 0;
 
         private bool moving = false;
         private bool grounded = false;
@@ -73,7 +79,7 @@ namespace Platformer.Components
         /* The position of the bounds after movement by speed */
         public Vector2 ProjectedBounds
         {
-            get { return BoundPosition + new Vector2(xSpeed, ySpeed); }
+            get { return BoundPosition + new Vector2((int)xSpeed, (int)ySpeed); }
         }
 
         public Vector2 GroundCollisionLeft
@@ -136,9 +142,10 @@ namespace Platformer.Components
 
         public override void Update(GameTime gameTime)
         {
-            bool left = InputHandler.KeyDown(Keys.Left) || InputHandler.ButtonDown(Buttons.DPadLeft, PlayerIndex.One);
-            bool right = InputHandler.KeyDown(Keys.Right) || InputHandler.ButtonDown(Buttons.DPadRight, PlayerIndex.One);
-            bool jump = InputHandler.KeyPressed(Keys.Space) || InputHandler.ButtonPressed(Buttons.A, PlayerIndex.One);
+            bool left = InputHandler.ActionDown(Actions.Left, PlayerIndex.One);
+            bool right = InputHandler.ActionDown(Actions.Right, PlayerIndex.One);
+            bool jump = InputHandler.ActionPressed(Actions.Jump, PlayerIndex.One);
+            bool shoot = InputHandler.ActionPressed(Actions.Shoot, PlayerIndex.One);
 
             // reset position
             if (InputHandler.KeyPressed(Keys.Q))
@@ -190,7 +197,7 @@ namespace Platformer.Components
                 int sign = Math.Sign(xSpeed);
 
                 /* decelerate the player */
-                xSpeed -= deceleration * sign;
+                xSpeed -= (grounded ? deceleration : decelerationAir) * sign;
 
                 /* set speed to zero to when he decelerated to a halt */
                 if (Math.Sign(xSpeed) != sign)
@@ -203,7 +210,7 @@ namespace Platformer.Components
             if (groundedPrevious && !grounded && ySpeed > 0)
                 ySpeed = 0;
 
-            if (!grounded)
+            if (!grounded || shoot)
             {
                 ySpeed += gravity;
                 if (ySpeed > terminalVelocity)
@@ -222,8 +229,8 @@ namespace Platformer.Components
 
             /* Collision Detection */
             /* by default, do not highlight each tile in debug drawing mode */
-            foreach (Tile tile in levelRef.Tiles)
-                tile.DebugDraw = false;
+            //foreach (Tile tile in levelRef.Tiles)
+            //    tile.DebugDraw = false;
 
             /* The list of tiles to check for collision with */
             HashSet<Tile> tilesToCheck = new HashSet<Tile>();
@@ -273,8 +280,6 @@ namespace Platformer.Components
                 }
             }
 
-            //Console.WriteLine(colWall);
-
             /* Update the player's position based on his speed */
             position += new Vector2(xSpeed, ySpeed);
 
@@ -295,13 +300,46 @@ namespace Platformer.Components
             /* Set the player sprite's direction */
             flipHorizontal = (direction == Direction.Left);
 
-            base.Update(gameTime);
+            /* Shooting */
+            if (shoot && shootCoolDown == 0)
+            {
+                Vector2 rightStick = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right;
 
-            //Console.WriteLine(position);
+                float rocketAng = (float)MathHelper.ToDegrees((float)Math.Atan2(-rightStick.Y, rightStick.X));
+                if (rocketAng < 0) rocketAng += 360;
+
+                //rocketAng = (int)(rocketAng / 45) * 45f;
+
+                /* knock the player back */
+                if (rocketAng >= 40 && rocketAng <= 140)
+                {
+                    xSpeed += -(float)Math.Cos(MathHelper.ToRadians(rocketAng)) * shootKnockBack;
+                    ySpeed = -(float)Math.Sin(MathHelper.ToRadians(rocketAng)) * shootKnockBack;
+
+                    xSpeed = MathHelper.Clamp(xSpeed, -shootKnockBack, shootKnockBack);
+                    ySpeed = MathHelper.Clamp(ySpeed, -shootKnockBack, shootKnockBack);
+                }
+
+                levelRef.Entities.Add(new EntityRocket(Center, rocketAng, rocketSpeed, 3, levelRef));
+
+                grounded = false;
+                shootCoolDown = shootCoolDownMax;
+            }
+
+            shootCoolDown -= gameTime.ElapsedGameTime.Milliseconds;
+            if (shootCoolDown < 0)
+                shootCoolDown = 0;
+
+            base.Update(gameTime);
         }
 
         private bool HandleWallCollision(Tile tile)
         {
+            /* dont handle wall collision if the player is already in the tile */
+            if (tile.Rectangle.Intersects(new Rectangle(BoundPosition.ToPoint(), BoundSize.ToPoint()))
+                || tile.Rectangle.Contains(GroundCollisionLeft) || tile.Rectangle.Contains(GroundCollisionRight))
+                return false;
+
             Rectangle wallCollisionRect = new Rectangle(ProjectedBounds.ToPoint(), BoundSize.ToPoint());
             if (grounded)
                 //wallCollisionRect.Y = (int)(position.Y + (BoundPosition.Y - Position.Y));
@@ -318,7 +356,7 @@ namespace Platformer.Components
                     // stop the player
                     xSpeed = 0;
 
-                    tile.DebugDraw = true;
+                    //tile.DebugDraw = true;
 
                     // the player is colliding
                     return true;
@@ -332,7 +370,7 @@ namespace Platformer.Components
                     // stop the player
                     xSpeed = 0;
 
-                    tile.DebugDraw = true;
+                    //tile.DebugDraw = true;
 
                     // the player is colliding
                     return true;

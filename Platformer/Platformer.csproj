@@ -41,11 +41,13 @@
   <ItemGroup>
     <Compile Include="Components\EntityPlayer.cs" />
     <Compile Include="Components\EntityPlayerSpawn.cs" />
+    <Compile Include="Components\EntityRocket.cs" />
     <Compile Include="Components\Tile.cs" />
     <Compile Include="Components\TileData.cs" />
     <Compile Include="Components\TileDataManager.cs" />
     <Compile Include="Components\TileFactory.cs" />
     <Compile Include="Components\EntityData.cs" />
+    <Compile Include="GameContent.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Levels\Level.cs" />
