@@ -1,4 +1,4 @@
-#Platformer
+# Platformer
 by Shane O' Malley
 
 This is something I've been working on for a few weeks on-and-off now. As it stands, it's the basis for a platforming game. It uses a tile based engine which supports slopes, and animated tiles. It comes complete with a barebones, yet functional level editor.
