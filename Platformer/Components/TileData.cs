@@ -11,7 +11,6 @@ namespace Platformer.Components
         #region Field Region
 
         public readonly int[] frames;
-        public readonly int[] heightMask;
         public readonly float startHeight;
         public readonly float angle;
         public readonly bool solid;
@@ -22,10 +21,9 @@ namespace Platformer.Components
 
         #region Constructor Region
 
-        public TileData(int[] frames, int[] heightMask, float startHeight, float angle, bool solid, bool visible, bool oneWay)
+        public TileData(int[] frames, float startHeight, float angle, bool solid, bool visible, bool oneWay)
         {
             this.frames = frames;
-            this.heightMask = heightMask;
             this.startHeight = startHeight;
             this.angle = angle;
             this.solid = solid;

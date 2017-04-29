@@ -39,6 +39,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Components\EntityExplosion.cs" />
     <Compile Include="Components\EntityPlayer.cs" />
     <Compile Include="Components\EntityPlayerSpawn.cs" />
     <Compile Include="Components\EntityRocket.cs" />
@@ -63,6 +64,7 @@
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>

@@ -37,15 +37,20 @@ namespace Platformer.Components
         private const float terminalVelocity = 12f;
         private const float jumpPower = 24f;
 
-        private const float rocketSpeed = 20f;
-        private const float shootKnockBack = 12f;
+        private const float rocketSpeed = 16f;
+        private const float shootKnockBack = 0f;
         private const int shootCoolDownMax = 1;
         private int shootCoolDown = 0;
+
+        private const float explosionKnockbackMax = 30f;
+        private List<EntityExplosion> encounteredExplosions;
 
         private bool moving = false;
         private bool grounded = false;
         private bool groundedPrevious = false;
         private Direction direction = Direction.Right;
+
+        private float rocketAng = 0;
 
         private Color debugColor = Color.Red;
 
@@ -55,26 +60,13 @@ namespace Platformer.Components
 
         public Vector2 BoundPosition
         {
-            get
-            {
-                //if (!grounded)
-                //    return position + new Vector2(7, 0 + 2f) * 3;
-                //else
-                    return position + new Vector2(7, 8f) * 3;
-            }
+            get { return position + new Vector2(7, 8f) * 3; }
         }
 
         public Vector2 BoundSize
         {
-            get
-            {
-                //if (!grounded)
-                //    return new Vector2(12, 30 - 4f*2) * 3;
-                //else
-                    return new Vector2(12, 24 - 8f) * 3;
-            }
+            get { return new Vector2(12, 24 - 8f) * 3; }
         }
-
 
         /* The position of the bounds after movement by speed */
         public Vector2 ProjectedBounds
@@ -96,7 +88,7 @@ namespace Platformer.Components
         {
             get
             {
-                if (!grounded && false)
+                if (!grounded && true)
                     return position + new Vector2(9, 0) * 3;
                 return position + new Vector2(9, 5) * 3;
             }
@@ -106,7 +98,7 @@ namespace Platformer.Components
         {
             get
             {
-                if (!grounded && false)
+                if (!grounded && true)
                     return position + new Vector2(17, 0) * 3;
                 return position + new Vector2(17, 5) * 3;
             }
@@ -122,6 +114,8 @@ namespace Platformer.Components
             this.levelRef = levelRef;
 
             SetupSprite(texture);
+
+            encounteredExplosions = new List<EntityExplosion>();
         }
 
         #endregion
@@ -145,7 +139,8 @@ namespace Platformer.Components
             bool left = InputHandler.ActionDown(Actions.Left, PlayerIndex.One);
             bool right = InputHandler.ActionDown(Actions.Right, PlayerIndex.One);
             bool jump = InputHandler.ActionPressed(Actions.Jump, PlayerIndex.One);
-            bool shoot = InputHandler.ActionPressed(Actions.Shoot, PlayerIndex.One);
+            bool shoot = InputHandler.ActionPressed(Actions.Shoot, PlayerIndex.One)
+                || InputHandler.ButtonDown(Buttons.LeftShoulder, PlayerIndex.One);
 
             // reset position
             if (InputHandler.KeyPressed(Keys.Q))
@@ -210,7 +205,7 @@ namespace Platformer.Components
             if (groundedPrevious && !grounded && ySpeed > 0)
                 ySpeed = 0;
 
-            if (!grounded || shoot)
+            if (!grounded)
             {
                 ySpeed += gravity;
                 if (ySpeed > terminalVelocity)
@@ -227,11 +222,43 @@ namespace Platformer.Components
                 ySpeed -= jumpPower;
             }
 
-            /* Collision Detection */
-            /* by default, do not highlight each tile in debug drawing mode */
-            //foreach (Tile tile in levelRef.Tiles)
-            //    tile.DebugDraw = false;
+            /* Be affected by explosions */
+            foreach (Entity entity in levelRef.Entities)
+            {
+                if (entity.GetType() == typeof(EntityExplosion))
+                {
+                    EntityExplosion explosion = (EntityExplosion)entity;
 
+                    if (!encounteredExplosions.Contains(explosion))
+                        encounteredExplosions.Add(explosion);
+                    else
+                        continue;
+
+                    float dist = (explosion.Position - Center - new Vector2(xSpeed, ySpeed)).Length();
+                    float knockBackPower = ((explosion.EffectiveRadius - dist) / explosion.EffectiveRadius) * explosionKnockbackMax;
+
+                    //Console.WriteLine("dist = " + dist);
+                    //Console.WriteLine("power = " + knockBackPower);
+
+                    if (knockBackPower > 0)
+                    {
+                        if (grounded)
+                            ySpeed = 0;
+                        //grounded = false;
+
+                        float angle = explosion.Direction;
+
+                        xSpeed += knockBackPower * (float)Math.Cos(MathHelper.ToRadians(angle));
+                        ySpeed += knockBackPower * (float)Math.Sin(MathHelper.ToRadians(angle));
+
+                        Console.WriteLine("tis = " + ySpeed);
+
+                        break;
+                    }
+                }
+            }
+
+            /* Collision Detection */
             /* The list of tiles to check for collision with */
             HashSet<Tile> tilesToCheck = new HashSet<Tile>();
 
@@ -282,12 +309,11 @@ namespace Platformer.Components
 
             /* Update the player's position based on his speed */
             position += new Vector2(xSpeed, ySpeed);
-
-            debugColor = (colFloor || colWall || colCeil) ? Color.Blue : Color.Red;
+            debugColor = (grounded) ? Color.Blue : Color.Red;
 
             /* Set the player's animation sequence */
-            if ((!grounded && Math.Abs(ySpeed) > terminalVelocity * 0.2f)
-                || (!grounded && sprite.GetSequence().Equals("jump")))
+            if (!grounded && 
+                (Math.Abs(ySpeed) > terminalVelocity * 0.2f || sprite.GetSequence().Equals("jump")))
                 sprite.SetSequence("jump");
             else
             {
@@ -300,30 +326,33 @@ namespace Platformer.Components
             /* Set the player sprite's direction */
             flipHorizontal = (direction == Direction.Left);
 
+            /* Aiming */
+            Vector2 rightStick = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right;
+
+            rocketAng = (float)MathHelper.ToDegrees((float)Math.Atan2(-rightStick.Y, rightStick.X));
+            if (rocketAng < 0) rocketAng += 360;
+
             /* Shooting */
             if (shoot && shootCoolDown == 0)
             {
-                Vector2 rightStick = GamePad.GetState(PlayerIndex.One).ThumbSticks.Right;
-
-                float rocketAng = (float)MathHelper.ToDegrees((float)Math.Atan2(-rightStick.Y, rightStick.X));
-                if (rocketAng < 0) rocketAng += 360;
-
-                //rocketAng = (int)(rocketAng / 45) * 45f;
+                //rocketAng = (int)(rocketAng / 10) * 45f;
 
                 /* knock the player back */
-                if (rocketAng >= 40 && rocketAng <= 140)
-                {
-                    xSpeed += -(float)Math.Cos(MathHelper.ToRadians(rocketAng)) * shootKnockBack;
-                    ySpeed = -(float)Math.Sin(MathHelper.ToRadians(rocketAng)) * shootKnockBack;
+                //if (rocketAng >= 40 && rocketAng <= 140)
+                //{
+                //    xSpeed += -(float)Math.Cos(MathHelper.ToRadians(rocketAng)) * shootKnockBack;
+                //    ySpeed = -(float)Math.Sin(MathHelper.ToRadians(rocketAng)) * shootKnockBack;
 
-                    xSpeed = MathHelper.Clamp(xSpeed, -shootKnockBack, shootKnockBack);
-                    ySpeed = MathHelper.Clamp(ySpeed, -shootKnockBack, shootKnockBack);
-                }
+                //    xSpeed = MathHelper.Clamp(xSpeed, -shootKnockBack, shootKnockBack);
+                //    ySpeed = MathHelper.Clamp(ySpeed, -shootKnockBack, shootKnockBack);
+                //}
 
-                levelRef.Entities.Add(new EntityRocket(Center, rocketAng, rocketSpeed, 3, levelRef));
+                levelRef.Entities.Add(new EntityRocket(Center, rocketAng, rocketSpeed, 4, levelRef));
 
                 grounded = false;
                 shootCoolDown = shootCoolDownMax;
+
+                Console.WriteLine(rocketAng);
             }
 
             shootCoolDown -= gameTime.ElapsedGameTime.Milliseconds;
@@ -333,16 +362,20 @@ namespace Platformer.Components
             base.Update(gameTime);
         }
 
+        /* Return true if the player's wall collision detector is colliding with the tile */
         private bool HandleWallCollision(Tile tile)
         {
             /* dont handle wall collision if the player is already in the tile */
-            if (tile.Rectangle.Intersects(new Rectangle(BoundPosition.ToPoint(), BoundSize.ToPoint()))
-                || tile.Rectangle.Contains(GroundCollisionLeft) || tile.Rectangle.Contains(GroundCollisionRight))
+            if (/*tile.Rectangle.IntersectsWith(new System.Drawing.RectangleF(BoundPosition.X, BoundPosition.Y, BoundSize.X, BoundSize.Y))*/
+                false || tile.Rectangle.Contains(GroundCollisionLeft.X, GroundCollisionLeft.Y) || tile.Rectangle.Contains(GroundCollisionRight.X, GroundCollisionRight.Y))
+            {
+                tile.DebugDraw = true;
                 return false;
+            }
 
-            Rectangle wallCollisionRect = new Rectangle(ProjectedBounds.ToPoint(), BoundSize.ToPoint());
+            System.Drawing.RectangleF wallCollisionRect = new System.Drawing.RectangleF(ProjectedBounds.X, ProjectedBounds.Y, BoundSize.X, BoundSize.Y);
+
             if (grounded)
-                //wallCollisionRect.Y = (int)(position.Y + (BoundPosition.Y - Position.Y));
                 wallCollisionRect.Y = (int)BoundPosition.Y;
 
             if (tile.Collides(wallCollisionRect))
@@ -351,13 +384,11 @@ namespace Platformer.Components
                 if (position.X > tile.Position.X)
                 {
                     // place the player at the tile's right wall
-                    position.X = tile.Position.X + tile.Size.X - (BoundPosition.X - position.X) + 0.1f;
+                    position.X = tile.Position.X + tile.Size.X - (BoundPosition.X - position.X) + 0f;
 
                     // stop the player
                     xSpeed = 0;
-
-                    //tile.DebugDraw = true;
-
+                    
                     // the player is colliding
                     return true;
                 }
@@ -365,12 +396,10 @@ namespace Platformer.Components
                 else
                 {
                     // place the player at the tile's left wall
-                    position.X = tile.Position.X - size.X + (BoundPosition.X - position.X) - 0.1f;
+                    position.X = tile.Position.X - size.X + (BoundPosition.X - position.X) - 0f;
 
                     // stop the player
                     xSpeed = 0;
-
-                    //tile.DebugDraw = true;
 
                     // the player is colliding
                     return true;
@@ -380,6 +409,7 @@ namespace Platformer.Components
             return false;
         }
 
+        /* Return true if either of the player's floor collision detectors are colliding with the tile */
         private bool HandleFloorCollision(Tile tile)
         {
             float collisionLeft = tile.PointCollision(GroundCollisionLeft + new Vector2(0, ySpeed));
@@ -413,6 +443,7 @@ namespace Platformer.Components
             return false;
         }
 
+        /* Return true if either of the player's ceiling collision detectors are colliding with the tile */
         private bool HandleCeilingCollision(Tile tile)
         {
             float collisionLeft = tile.PointCollision(CeilingCollisionLeft + new Vector2(0, ySpeed));
@@ -429,32 +460,46 @@ namespace Platformer.Components
             return false;
         }
 
+        /* Draw the player */
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             base.Draw(gameTime, spriteBatch);
 
+            // draw some additional stuff if debug drawing mode is enabled */
             if (Globals.DebugMode)
             {
+                // setup the player's wall collision rectangle
                 DebugDrawing.DrawRectangle(spriteBatch, new Rectangle(ProjectedBounds.ToPoint(), BoundSize.ToPoint()), Color.Yellow, 0.5f);
 
+                // setup the player's wall collision rectangle at its projected position */
                 DebugDrawing.DrawRectangle(spriteBatch, new Rectangle(BoundPosition.ToPoint(), BoundSize.ToPoint()), debugColor, 0.5f);
 
+                // setup the player's left floor detector
                 Rectangle bottomLeft = new Rectangle(GroundCollisionLeft.ToPoint(), new Point(4));
                 bottomLeft.Offset(-2, -2);
 
+                // setup the player's right floor detector
                 Rectangle bottomRight = new Rectangle(GroundCollisionRight.ToPoint(), new Point(4));
                 bottomRight.Offset(-2, -2);
 
+                // setup the player's left ceiling detector
                 Rectangle topLeft = new Rectangle(CeilingCollisionLeft.ToPoint(), new Point(4));
                 topLeft.Offset(-2, -2);
 
+                // setup the player's right ceiling detector
                 Rectangle topRight = new Rectangle(CeilingCollisionRight.ToPoint(), new Point(4));
                 topRight.Offset(-2, -2);
 
+                // draw the player's point collision detectors
                 DebugDrawing.DrawRectangle(spriteBatch, bottomLeft, Color.White, 1f);
                 DebugDrawing.DrawRectangle(spriteBatch, bottomRight, Color.White, 1f);
                 DebugDrawing.DrawRectangle(spriteBatch, topLeft, Color.White, 1f);
                 DebugDrawing.DrawRectangle(spriteBatch, topRight, Color.White, 1f);
+
+                // draw where the player is aiming
+                Point aimPos = new Point((int)(Center.X + 100 * (float)Math.Cos(MathHelper.ToRadians(rocketAng)) - 2), 
+                                         (int)(Center.Y + 100 * (float)Math.Sin(MathHelper.ToRadians(rocketAng)) - 2));
+                DebugDrawing.DrawRectangle(spriteBatch, new Rectangle(aimPos, new Point(4, 4)), debugColor, 0.5f);
             }
         }
 

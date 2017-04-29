@@ -42,7 +42,7 @@ namespace Platformer.Components
                 bool visible = other[2].Equals("1");
                 bool oneWay = other[3].Equals("1");
 
-                TileData td = new TileData(frames, heightMask, startHeight, angle, solid, visible, oneWay);
+                TileData td = new TileData(frames, startHeight, angle, solid, visible, oneWay);
                 tileDataDictionary.Add(tileId++, td);
             }
         }

@@ -108,6 +108,16 @@ namespace Platformer.States
             if (InputHandler.KeyPressed(Keys.Escape) || InputHandler.ButtonDown(Buttons.Back, PlayerIndex.One))
                 stateManager.GoToState("mainMenu", true, "");
 
+            if (InputHandler.KeyPressed(Keys.Z) ||
+                InputHandler.ButtonPressed(Buttons.X, PlayerIndex.One))
+            {
+                //for (int i = -10; i <= 10; i++)
+                //{
+                //    level.Entities.Add(new EntityRocket(new Vector2(7.5f * 80, 5.5f * 80), 270 + i, 8f, 5, level));
+                //}
+                level.Entities.Add(new EntityRocket(new Vector2(7.5f * 80, 5.5f * 80), 270 + 7, 8f, 5, level));
+            }
+
             level.Update(gameTime);
 
             base.Update(gameTime);

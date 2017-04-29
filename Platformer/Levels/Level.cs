@@ -30,6 +30,10 @@ namespace Platformer.Levels
 
         /* the level's entities */
         private List<Entity> entities;
+        // entities added to these lists will be added or removed from the 
+        // 'entities' list after all entities have been updated each cycle
+        private List<Entity> entityAddBuffer;
+        private List<Entity> entityRemoveBuffer;
         // a special reference to the 'player spawn' entity
         private EntityPlayerSpawn playerSpawn;
 
@@ -110,6 +114,16 @@ namespace Platformer.Levels
                     entities.Add(playerSpawn);
                 }
             }
+
+            /* set up the entitiy add and remove buffers */
+            entityAddBuffer = new List<Entity>();
+            entityRemoveBuffer = new List<Entity>();
+        }
+
+        /* Create an explosion at the given position */
+        public void InstantiateExplosion(Vector2 position, float wallNormal)
+        {
+            entityAddBuffer.Add(new EntityExplosion(position, 120f, wallNormal, this));
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -145,13 +159,23 @@ namespace Platformer.Levels
 
                 if (e.Destroyed)
                 {
-                    entities.RemoveAt(i);
-                    i--;
+                    entityRemoveBuffer.Add(e);
+                    if (e.GetType() == typeof(EntityRocket))
+                        Globals.nBullets--;
                     continue;
                 }
 
                 e.Update(gameTime);
             }
+
+            /* Add or remove entities if needed */
+            foreach (Entity e in entityAddBuffer)
+                entities.Add(e);
+            entityAddBuffer.Clear();
+
+            foreach (Entity e in entityRemoveBuffer)
+                entities.Remove(e);
+            entityRemoveBuffer.Clear();
         }
 
         #endregion

@@ -17,7 +17,6 @@ namespace Platformer.Components
     {
         #region Field Region
 
-        protected int[] heightMask;
         protected float startHeight;
         protected float angle;
         protected bool solid;
@@ -33,7 +32,7 @@ namespace Platformer.Components
 
         public Vector2 LeftWallTop
         {
-            get { return position + new Vector2(0.1f, (1 - startHeight) * size.Y); }
+            get { return position + new Vector2(0, (1 - startHeight) * size.Y); }
         }
 
         public Vector2 LeftWallBottom
@@ -62,10 +61,9 @@ namespace Platformer.Components
 
         #region Constructor Region
 
-        public Tile(Vector2 position, Vector2 size, Sprite sprite, int[] heightMask, float startHeight, float angle, bool solid, bool visible, bool oneWay)
+        public Tile(Vector2 position, Vector2 size, Sprite sprite, float startHeight, float angle, bool solid, bool visible, bool oneWay)
             : base(position, size, sprite, null, 0)
         {
-            this.heightMask = (int[])heightMask.Clone();
             this.startHeight = startHeight;
             this.angle = angle;
             this.solid = solid;
@@ -73,13 +71,13 @@ namespace Platformer.Components
             this.oneWay = oneWay;
         }
 
-        public Tile(int gridX, int gridY, int tileSize, Sprite sprite, int[] heightMask, float startHeight, int angle, bool solid, bool visible, bool oneWay)
-            : this(new Vector2(gridX, gridY), new Vector2(tileSize), sprite, heightMask, startHeight, angle, solid, visible, oneWay)
+        public Tile(int gridX, int gridY, int tileSize, Sprite sprite, float startHeight, int angle, bool solid, bool visible, bool oneWay)
+            : this(new Vector2(gridX, gridY), new Vector2(tileSize), sprite, startHeight, angle, solid, visible, oneWay)
         {
         }
 
         public Tile(int gridX, int gridY, Sprite sprite, TileData tileData)
-            : this(new Vector2(gridX, gridY) * Globals.TileSize, new Vector2(Globals.TileSize), sprite, tileData.heightMask, tileData.startHeight, tileData.angle, tileData.solid, tileData.visible, tileData.oneWay)
+            : this(new Vector2(gridX, gridY) * Globals.TileSize, new Vector2(Globals.TileSize), sprite, tileData.startHeight, tileData.angle, tileData.solid, tileData.visible, tileData.oneWay)
         {
 
         }
@@ -88,12 +86,7 @@ namespace Platformer.Components
 
         #region Method Region
 
-        public void ReverseHeightMask()
-        {
-            Array.Reverse(heightMask);
-        }
-
-        public void ReverseAngle()
+        private void ReverseAngle()
         {
             angle = 360 - angle;
         }
@@ -103,40 +96,7 @@ namespace Platformer.Components
         {
             flipHorizontal = !flipHorizontal;
             startHeight = startHeight - (float)Math.Tan(MathHelper.ToRadians(angle)) * 1;
-            angle = 360 - angle;
-        }
-
-        /* Returns true if the rectangle given intersects with this, taking into account the tile's heightMask */
-        public bool CollidesOLD(Rectangle rect)
-        {
-            /* return false if this tile is not solid */
-            if (!solid)
-                return false;
-
-            /* return false if the rectangle is completely outside the tile */
-            if (!rect.Intersects(Rectangle))
-                return false;
-
-            float sizeIncrease = size.X / sprite.CellWidth;
-
-            int h1, h2;
-            if (rect.X > position.X && rect.X < position.X + size.X)
-                h1 = heightMask[(int)((rect.X - position.X) * (1 / sizeIncrease))];
-            else
-                h1 = -1;
-
-            if (rect.X + rect.Width > position.X && rect.X + rect.Width < position.X + size.X)
-                h2 = heightMask[(int)((rect.X + rect.Width - position.X) * (1 / sizeIncrease))];
-            else
-                h2 = -1;
-
-            if (h1 != -1 && ((rect.Y + rect.Height) % size.Y) * (1 / sizeIncrease) > (size.Y * (1 / sizeIncrease) - h1))
-                return true;
-
-            if (h2 != -1 && ((rect.Y + rect.Height) % size.Y) * (1 / sizeIncrease) > (size.Y * (1 / sizeIncrease) - h2))
-                return true;
-            
-            return false;
+            ReverseAngle();
         }
 
         /* Returns the height of the ground at the given x position, for use in collision methods below */
@@ -146,9 +106,9 @@ namespace Platformer.Components
         }
 
         /* Returns true if the tile collides with the rectangle */
-        public bool Collides(Rectangle rect)
+        public bool Collides(System.Drawing.RectangleF rect)
         {
-            if (!solid || !Rectangle.Intersects(rect))
+            if (!solid || !Rectangle.IntersectsWith(rect))
                 return false;
 
             /* check collision at left wall */
@@ -177,9 +137,10 @@ namespace Platformer.Components
             return false;
         }
 
+        /* Returns how deep the point is in the tile from the top of the tile at that x position */
         public float PointCollision(Vector2 point)
         {
-            if (!solid || !Rectangle.Contains(point))
+            if (!solid || !Rectangle.Contains(point.X, point.Y))
                 return -1;
 
             /* The x position of the point relative to the tiles X position */
@@ -193,7 +154,8 @@ namespace Platformer.Components
             return -(size.Y - dy - h);
         }
 
-        public void getIntersectionData(Vector2 p1, Vector2 p2, out Vector2? poi, out float angle)
+        /* Get the point of intersection, angle of reflection, and normal of the wall if |p1p2| intersects with this tile */
+        public void getIntersectionData(Vector2 p1, Vector2 p2, out Vector2? poi, out float angle, out float wallNormal)
         {
             if (solid)
             {
@@ -205,28 +167,43 @@ namespace Platformer.Components
                         { LeftWallTop, RightWallTop},
                     };
 
-                float rayAng = Utils.AngleBetweenPoints(p1, p2);
+                Vector2 ep1, ep2;
+                Utils.Extend(p1, p2, out ep1, out ep2, 1.0f);
+
+                float rayAng = Utils.AngleBetweenPoints(ep1, ep2);
+                if (rayAng < 0)
+                    rayAng += 360;
+
                 for (int sideNo = 0; sideNo < sides.GetLength(0); sideNo++)
                 {
-                    float normalAng = Utils.AngleBetweenPoints(sides[sideNo, 0], sides[sideNo, 1]) - 90;
+                    float normalAng = (Utils.AngleBetweenPoints(sides[sideNo, 0], sides[sideNo, 1]) - 90) % 360;
+                    if (normalAng < 0)
+                        normalAng += 360;
 
                     /* only check for collision if the normal of the side opposes the angle of the ray */
-                    if (rayAng > (normalAng - 90) % 360 && rayAng < (normalAng + 90) % 360)
+                    //if (rayAng > (normalAng - 90) % 360 && rayAng < (normalAng + 90) % 360)
+                    if (Utils.AngleInRange(rayAng, normalAng - 90, normalAng + 90))
                         continue;
 
-                    Vector2? intersection = Utils.GetIntersection(p1, p2, sides[sideNo, 0], sides[sideNo, 1]);
+                    Vector2 extendedWallP1, extendedWallP2;
+                    Utils.Extend(sides[sideNo, 0], sides[sideNo, 1], out extendedWallP1, out extendedWallP2, 1.0f);
+
+                    //Vector2? intersection = Utils.GetIntersection(p1, p2, sides[sideNo, 0], sides[sideNo, 1]);
+                    Vector2? intersection = Utils.GetIntersection(ep1, ep2, extendedWallP1, extendedWallP2);
 
                     if (intersection != null)
                     {
                         poi = (Vector2)intersection;
-                        angle = Utils.GetAngle(p1, p2, sides[sideNo, 0], sides[sideNo, 1]);
+                        angle = Utils.GetAngle(ep1, ep2, extendedWallP1, extendedWallP2);
+                        wallNormal = normalAng;
                         return;
                     }
                 }
             }
 
             poi = null;
-            angle = 0;
+            angle = -1;
+            wallNormal = -1;
         }
 
         #endregion
@@ -246,7 +223,7 @@ namespace Platformer.Components
             
             /* highlight if needed, and if debug drawing mode is enabled */
             if (Globals.DebugMode && DebugDraw)
-                DebugDrawing.DrawRectangle(spriteBatch, Rectangle, DebugColor, 0.5f);
+                DebugDrawing.DrawRectangle(spriteBatch, new Rectangle((int)Rectangle.X, (int)Rectangle.Y, (int)Rectangle.Width, (int)Rectangle.Height), DebugColor, 0.5f);
         }
 
         #endregion
