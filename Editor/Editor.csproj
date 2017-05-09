@@ -98,10 +98,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SimpleGameLibrary\SimpleGameLibrary\SimpleGameLibrary.csproj">
-      <Project>{2ec7886d-ec53-4926-91d6-593eb80f03ba}</Project>
-      <Name>SimpleGameLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Platformer\Platformer.csproj">
       <Project>{e49ba82c-4503-4469-8d9a-91b5ce5e5f0c}</Project>
       <Name>Platformer</Name>

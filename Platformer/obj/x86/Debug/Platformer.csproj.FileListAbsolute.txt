@@ -12,7 +12,6 @@ C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\W
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\SharpDX.XInput.dll
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\SharpDX.RawInput.dll
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
-C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\SimpleGameLibrary.pdb
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\MonoGame.Framework.xml
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\SharpDX.xml
@@ -31,3 +30,4 @@ C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\W
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\Content\fonts\arial.xnb
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\Content\images\entities\rocket.xnb
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\Content\images\entities\explosion.xnb
+C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Platformer\bin\Windows\x86\Debug\SimpleGameLibrary.pdb
