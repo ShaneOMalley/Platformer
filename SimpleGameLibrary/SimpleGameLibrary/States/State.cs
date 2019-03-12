@@ -87,8 +87,6 @@ namespace SimpleGameLibrary.States
         public virtual void Update(GameTime gameTime)
         {
             /* Update each of the state's components */
-            //foreach (Component component in components)
-            //    component.Update(gameTime);
             for (int i = 0; i < components.Count; i++)
             {
                 Component c = components[i];

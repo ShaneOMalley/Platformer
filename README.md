@@ -1,18 +1,13 @@
 # Platformer
 by Shane O' Malley
 
-This is something I've been working on for a few weeks on-and-off now. As it stands, it's the basis for a platforming game. It uses a tile based engine which supports slopes, and animated tiles. It comes complete with a barebones, yet functional level editor.
-
-I'll be adding to it over the next couple of weeks or so, starting with making some sort of challenge and win conditions.
+This is a proof-of-concept basis for a platforming game. It uses a tile based engine which supports slopes, and animated tiles. It comes complete with a barebones, yet functional level editor.
 
 The game's source can be found simply in the `Platformer` directory, and the Windows x86 (for 32-bit) binary can be found in the `Platformer\bin\Windows\x86\Debug` directory
 
 It is written in C# and uses the [MonoGame](http://www.monogame.net/) framework. There are many tutorials out there for setting up MonoGame with Visual Studio if you want to modify the project and build it for yourself.
 
-
-I've only built it for windows as of yet, but I do know that MonoGame can handle cross-platform, so I'll look into that in the future
-
-I have included two batch files to make it less awkard to run the game and editor. They are `Play Game.bat` and `Launch Editor.bat` respectively, and are in the root folder. All they do is launch the appropriate `.exe` file from within the folders.
+I have included two batch files to make it less awkward to run the game and editor. They are `Play Game.bat` and `Launch Editor.bat` respectively, and are in the root folder. All they do is launch the appropriate `.exe` file from within the folders.
 
 ## Playing The Game
 
@@ -20,9 +15,9 @@ When you open the game, you will need to move up and down with the arrow keys or
 
 The controls as they are at the moment are pretty simple: `Left` and `Right` Keys to move left and right, and `Space` to jump. You can also use the d-pad and 'A' button on an XBox controller to move and jump also.
 
-You can also shoot with `Right Bumper` or `Enter`, and aim with the right analog stick (there is no way to aim without a gamepad as of yet, but I will implement that later)
+You can also shoot with `Right Bumper` or `Enter`, and aim with the right analog stick (Note that you must use an Xbox controller if you want to aim)
 
-Bullets will make the player 'jump' if they are shot downwards. Bullets will also bounce off walls and sloped floors accurately, but in certain cases, the bullet will go through the wall, and perhaps get stuck. I will work on a fix soon
+Bullets bounce off walls and sloped floors accurately, and will explode after a certain number of collisions.
 
 I also left in some debugging stuff, If you hold `R` while playing, the game will 'pause', and If you press `E` while holding `R`, the game will logic will advance to the next frame. If you press `Q` the player will return to the spawn point. If you press `T` "debug drawing mode" will be toggle on and off. When debug drawing mode is on: 
 
@@ -32,7 +27,7 @@ I also left in some debugging stuff, If you hold `R` while playing, the game wil
 
 * a purple square will be drawn at the player's spawn point 
 
-* tiles which are used in collision detection for a bullet will be highlighted in purple
+* tiles which are used in collision detection for a bullet will be highlighted
 
 * white dots will be drawn at the points where ceiling and ground collision is checked
 

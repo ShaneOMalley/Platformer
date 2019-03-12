@@ -136,10 +136,10 @@ namespace Platformer.Components
 
         public override void Update(GameTime gameTime)
         {
-            bool left = InputHandler.ActionDown(Actions.Left, PlayerIndex.One);
-            bool right = InputHandler.ActionDown(Actions.Right, PlayerIndex.One);
-            bool jump = InputHandler.ActionPressed(Actions.Jump, PlayerIndex.One);
-            bool shoot = InputHandler.ActionPressed(Actions.Shoot, PlayerIndex.One)
+            bool leftPressed = InputHandler.ActionDown(Actions.Left, PlayerIndex.One);
+            bool rightPressed = InputHandler.ActionDown(Actions.Right, PlayerIndex.One);
+            bool jumpPressed = InputHandler.ActionPressed(Actions.Jump, PlayerIndex.One);
+            bool shootPressed = InputHandler.ActionPressed(Actions.Shoot, PlayerIndex.One)
                 || InputHandler.ButtonDown(Buttons.LeftShoulder, PlayerIndex.One);
 
             // reset position
@@ -153,7 +153,7 @@ namespace Platformer.Components
 
             /* Player Movement with Acceleration and Deceleration */
             /* Right */
-            if (right && !left)
+            if (rightPressed && !leftPressed)
             {
                 /* If already moving right accelerate */
                 if (xSpeed >= 0)
@@ -170,7 +170,7 @@ namespace Platformer.Components
                 moving = true;
             }
             /* Left */
-            else if (left && !right)
+            else if (leftPressed && !rightPressed)
             {
                 /* If already moving left, accelerate */
                 if (xSpeed <= 0)
@@ -217,7 +217,7 @@ namespace Platformer.Components
             }
 
             /* Jumping */
-            if (jump && grounded)
+            if (jumpPressed && grounded)
             {
                 ySpeed -= jumpPower;
             }
@@ -237,14 +237,10 @@ namespace Platformer.Components
                     float dist = (explosion.Position - Center - new Vector2(xSpeed, ySpeed)).Length();
                     float knockBackPower = ((explosion.EffectiveRadius - dist) / explosion.EffectiveRadius) * explosionKnockbackMax;
 
-                    //Console.WriteLine("dist = " + dist);
-                    //Console.WriteLine("power = " + knockBackPower);
-
                     if (knockBackPower > 0)
                     {
                         if (grounded)
                             ySpeed = 0;
-                        //grounded = false;
 
                         float angle = explosion.Direction;
 
@@ -333,20 +329,8 @@ namespace Platformer.Components
             if (rocketAng < 0) rocketAng += 360;
 
             /* Shooting */
-            if (shoot && shootCoolDown == 0)
+            if (shootPressed && shootCoolDown == 0)
             {
-                //rocketAng = (int)(rocketAng / 10) * 45f;
-
-                /* knock the player back */
-                //if (rocketAng >= 40 && rocketAng <= 140)
-                //{
-                //    xSpeed += -(float)Math.Cos(MathHelper.ToRadians(rocketAng)) * shootKnockBack;
-                //    ySpeed = -(float)Math.Sin(MathHelper.ToRadians(rocketAng)) * shootKnockBack;
-
-                //    xSpeed = MathHelper.Clamp(xSpeed, -shootKnockBack, shootKnockBack);
-                //    ySpeed = MathHelper.Clamp(ySpeed, -shootKnockBack, shootKnockBack);
-                //}
-
                 levelRef.Entities.Add(new EntityRocket(Center, rocketAng, rocketSpeed, 4, levelRef));
 
                 grounded = false;
@@ -366,8 +350,7 @@ namespace Platformer.Components
         private bool HandleWallCollision(Tile tile)
         {
             /* dont handle wall collision if the player is already in the tile */
-            if (/*tile.Rectangle.IntersectsWith(new System.Drawing.RectangleF(BoundPosition.X, BoundPosition.Y, BoundSize.X, BoundSize.Y))*/
-                false || tile.Rectangle.Contains(GroundCollisionLeft.X, GroundCollisionLeft.Y) || tile.Rectangle.Contains(GroundCollisionRight.X, GroundCollisionRight.Y))
+            if (tile.Rectangle.Contains(GroundCollisionLeft.X, GroundCollisionLeft.Y) || tile.Rectangle.Contains(GroundCollisionRight.X, GroundCollisionRight.Y))
             {
                 tile.DebugDraw = true;
                 return false;

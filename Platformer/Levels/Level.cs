@@ -22,7 +22,7 @@ namespace Platformer.Levels
     {
         #region Field Region
 
-        /* Each tile will have this as a sprite. Their different sequences is what will determine whit tile(s) they use */
+        /* Each tile will have this as a sprite. Their different sequences is what will determine what tile(s) they use */
         private Sprite tileSheetSprite;
 
         /* The array of tiles */
@@ -78,7 +78,6 @@ namespace Platformer.Levels
         private void LoadLevel(string fileName)
         {
             /* load and deserialize the level */
-            //LevelData levelData = (LevelData)Serialization.Serialization.Deserialize("map.bin");
             LevelData levelData = SimpleGameLibrary.Serialization.Deserialize<LevelData>(fileName);
 
             /* set up tiles */
@@ -87,17 +86,17 @@ namespace Platformer.Levels
             for (int x = 0; x < levelData.tiles.Length; x++)
                 for (int y = 0; y < levelData.tiles[0].Length; y++)
                 {
-                    IndividualTileData td = levelData.tiles[x][y];
+                    IndividualTileData individualTileData = levelData.tiles[x][y];
 
-                    int id = td != null ? td.id : 0;
+                    int id = individualTileData != null ? individualTileData.id : 0;
 
-                    Components.TileData ctd = TileDataManager.tileDataDictionary[id];
+                    Components.TileData tileData = TileDataManager.tileDataDictionary[id];
 
                     Sprite tileSprite = (Sprite)tileSheetSprite.Clone();
-                    tileSprite.AddSequence("default", 200, ctd.frames);
+                    tileSprite.AddSequence("default", 200, tileData.frames);
 
-                    Tile tile = new Tile(x, y, tileSprite, ctd);
-                    if (td != null && td.flipHorizontal)
+                    Tile tile = new Tile(x, y, tileSprite, tileData);
+                    if (individualTileData != null && individualTileData.flipHorizontal)
                         tile.Flip();
 
                     tiles[y, x] = tile;
@@ -137,6 +136,7 @@ namespace Platformer.Levels
             foreach (Entity entity in entities)
                 entity.Draw(gameTime, spriteBatch);
 
+            /* Debug draw the player spawn point */
             if (Globals.DebugMode && PlayerSpawn != null)
             {
                 Rectangle rect = new Rectangle(PlayerSpawn.Position.ToPoint(), new Point(10));
@@ -168,7 +168,7 @@ namespace Platformer.Levels
                 e.Update(gameTime);
             }
 
-            /* Add or remove entities if needed */
+            /* Add or remove entities in buffers */
             foreach (Entity e in entityAddBuffer)
                 entities.Add(e);
             entityAddBuffer.Clear();

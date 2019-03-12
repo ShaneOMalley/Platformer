@@ -194,19 +194,6 @@ namespace SimpleGameLibrary.Sprites
                 0);
         }
 
-        /* Sequence related fields
-        private Dictionary<string, Sequence> sequences;
-        private Sequence currentSequence;
-        private int currentFrame;
-        private int frameTimeLeft;
-
-        public float alpha;
-
-        /* Texture related fields
-        private Rectangle[] sourceRectangles;
-        private Texture2D texture;
-         */
-
         public object Clone()
         {
             Sprite result = new Sprite();

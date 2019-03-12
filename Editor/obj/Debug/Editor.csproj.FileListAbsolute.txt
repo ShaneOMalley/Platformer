@@ -37,3 +37,43 @@ C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Editor\bin\Debug
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Editor\obj\Debug\Editor.FormResize.resources
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Editor\obj\Debug\Editor.FormShift.resources
 C:\Users\Shane\Documents\Visual Studio 2015\Projects\Platformer\Editor\bin\Debug\Content\images\entities\rocket.xnb
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\Content\images\terrain\terrain.xnb
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\Content\images\entities\explosion.xnb
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\Content\images\entities\player.xnb
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\Content\images\entities\rocket.xnb
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\Content\fonts\arial.xnb
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\Editor.exe.config
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\Editor.exe
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\Editor.pdb
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\Platformer.exe
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SimpleGameLibrary.exe
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\MonoGame.Framework.dll
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.dll
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.XAudio2.dll
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.DXGI.dll
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.Direct3D11.dll
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.Direct2D1.dll
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.XInput.dll
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\Platformer.pdb
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\Platformer.exe.config
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SimpleGameLibrary.pdb
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SimpleGameLibrary.exe.config
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\MonoGame.Framework.xml
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.xml
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.XAudio2.xml
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.DXGI.xml
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.Direct3D11.xml
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.Direct2D1.xml
+C:\Users\Shane\git\Platformer\Editor\bin\Debug\SharpDX.XInput.xml
+C:\Users\Shane\git\Platformer\Editor\obj\Debug\Editor.csprojAssemblyReference.cache
+C:\Users\Shane\git\Platformer\Editor\obj\Debug\Editor.FormEditor.resources
+C:\Users\Shane\git\Platformer\Editor\obj\Debug\Editor.FormResize.resources
+C:\Users\Shane\git\Platformer\Editor\obj\Debug\Editor.FormShift.resources
+C:\Users\Shane\git\Platformer\Editor\obj\Debug\Editor.Properties.Resources.resources
+C:\Users\Shane\git\Platformer\Editor\obj\Debug\Editor.csproj.GenerateResource.cache
+C:\Users\Shane\git\Platformer\Editor\obj\Debug\Editor.csproj.CoreCompileInputs.cache
+C:\Users\Shane\git\Platformer\Editor\obj\Debug\Editor.csproj.CopyComplete
+C:\Users\Shane\git\Platformer\Editor\obj\Debug\Editor.exe
+C:\Users\Shane\git\Platformer\Editor\obj\Debug\Editor.pdb

@@ -48,7 +48,6 @@ namespace Platformer.Components
                     size.X,
                     (float)(1f - startHeight + Math.Tan(MathHelper.ToRadians(angle))) * size.Y
                     );
-                //return position + new Vector2(size.X, 0);
             }
         }
 
@@ -112,7 +111,7 @@ namespace Platformer.Components
                 return false;
 
             /* check collision at left wall */
-            // the x position of the left wall, relative to the tile */
+            /* the x position of the left wall, relative to the tile */
             float x = rect.Left - position.X;
 
             // the distance from the top of the tile to the floor
@@ -125,7 +124,7 @@ namespace Platformer.Components
                 return true;            
 
             /* check collision at right wall */
-            // the x position of the left wall, relative to the tile */
+            /* the x position of the left wall, relative to the tile */
             x = rect.Right - position.X;
 
             // the distance from the top of the tile to the floor
@@ -181,14 +180,12 @@ namespace Platformer.Components
                         normalAng += 360;
 
                     /* only check for collision if the normal of the side opposes the angle of the ray */
-                    //if (rayAng > (normalAng - 90) % 360 && rayAng < (normalAng + 90) % 360)
                     if (Utils.AngleInRange(rayAng, normalAng - 90, normalAng + 90))
                         continue;
 
                     Vector2 extendedWallP1, extendedWallP2;
                     Utils.Extend(sides[sideNo, 0], sides[sideNo, 1], out extendedWallP1, out extendedWallP2, 1.0f);
-
-                    //Vector2? intersection = Utils.GetIntersection(p1, p2, sides[sideNo, 0], sides[sideNo, 1]);
+                    
                     Vector2? intersection = Utils.GetIntersection(ep1, ep2, extendedWallP1, extendedWallP2);
 
                     if (intersection != null)

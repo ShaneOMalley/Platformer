@@ -1,13 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer", "Platformer\Platformer.csproj", "{E49BA82C-4503-4469-8D9A-91B5CE5E5F0C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2EC7886D-EC53-4926-91D6-593EB80F03BA} = {2EC7886D-EC53-4926-91D6-593EB80F03BA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Editor", "Editor\Editor.csproj", "{ED835E8B-B10D-44C9-9556-6A0CFA9616FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGameLibrary", "..\SimpleGameLibrary\SimpleGameLibrary\SimpleGameLibrary.csproj", "{2EC7886D-EC53-4926-91D6-593EB80F03BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGameLibrary", "SimpleGameLibrary\SimpleGameLibrary\SimpleGameLibrary.csproj", "{2EC7886D-EC53-4926-91D6-593EB80F03BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,5 +43,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3EF9C7E4-9614-452C-BB64-937614C72BDC}
 	EndGlobalSection
 EndGlobal

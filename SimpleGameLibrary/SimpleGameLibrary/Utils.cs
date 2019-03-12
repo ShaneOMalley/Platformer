@@ -72,30 +72,8 @@ namespace SimpleGameLibrary
             rect1.Inflate(1f, 1f);
             rect2.Inflate(1f, 1f);
 
-            //rect1.Inflate(2f, 2f);
-            //rect2.Inflate(2f, 2f);
-
-            //if (InputHandler.KeyDown(Microsoft.Xna.Framework.Input.Keys.Y))
-                //Console.WriteLine(intersection + ", " + rect1 + ", " + rect2);
-
             if (!(rect1.Contains(intersection.X, intersection.Y) && rect2.Contains(intersection.X, intersection.Y)))
                 return null;
-
-            //Console.WriteLine("intersection of ({0}, {1}) and ({2}, {3}) is ({4})", p1, p2, q1, q2, intersection);
-
-            //if (intersection != null)
-            //{
-            //    if (rect1.Height == 0)
-            //    {
-            //        if (intersection.X >= p1.X && intersection.X <= p2.X)
-            //            return intersection;
-            //    }
-            //    else if (rect1.Width == 0)
-            //    {
-            //        if (intersection.Y >= q1.Y && intersection.Y <= p2.Y)
-            //            return intersection;
-            //    }
-            //}
 
             return intersection;
         }
@@ -148,16 +126,12 @@ namespace SimpleGameLibrary
             if (angle < 0) angle += 360;
             if (low < 0) low += 360;
             if (high < 0) high += 360;
-
-            //if (low > 180 && high < 180)
+            
             if (low > high)
                 return (angle > low || angle < high);
             else
                 return (angle > low && angle < high);
         }
-
-        /* Returns the distance between two points */
-        
 
         /* Returns the angle between two points */
         public static float AngleBetweenPoints(Vector2 p, Vector2 q)

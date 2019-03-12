@@ -73,14 +73,12 @@ namespace Platformer.Components
                 return;
             }
 
-            //Console.WriteLine(position + ", " + new Vector2(xSpeed, ySpeed) + ", rot = " + rotation);
-
             int nextGridX = (int)((position.X + xSpeed) / Globals.TileSize);
             int nextGridY = (int)((position.Y + ySpeed) / Globals.TileSize);
             int gridX = (int)(position.X / Globals.TileSize);
             int gridY = (int)(position.Y / Globals.TileSize);
 
-            Vector2? poi = null;
+            Vector2? intersectionPoint = null;
             float wallNormal = 0;
 
             Tile tileCollided = null;
@@ -94,45 +92,12 @@ namespace Platformer.Components
                 && Utils.IsInRange(gridY, 0, levelRef.Tiles.GetLength(0))
                 && Utils.IsInRange(gridX, 0, levelRef.Tiles.GetLength(1)))
             {
-                /*
-                Vector2? poi;
-                float angle;
-
-                Tile tile = levelRef.Tiles[gridY, gridX];
-                tile.getIntersectionData(position, position + new Vector2(xSpeed, ySpeed), out poi, out angle);
-
-                if (poi != null)
-                {
-                    tile.DebugDraw = true;
-                    this.rotation = angle;
-                }
-                */
-
                 int x = gridX;
                 int y = gridY;
                 int xSign = Math.Sign(gridX - nextGridX);
                 int ySign = Math.Sign(gridY - nextGridY);
 
                 List<Tile> tilesToCheck = new List<Tile>();
-
-                /* nested do-while loops to populate list of tiles to check */
-                // TODO Fix This
-                //do
-                //{
-                //    do
-                //    {
-                //        /* Add the tile to the list of tiles to check */
-                //        Tile tile = levelRef.Tiles[y, x];
-                //        tile.DebugDraw = true;
-                //        tilesToCheck.Add(tile);
-
-                //        y -= ySign;
-                //    }
-                //    while (y != nextGridY);
-
-                //    x -= xSign;
-                //}
-                //while (x != nextGridX);
 
                 // this is a temp solution, which will work most of the time
                 for (int i = -1; i <= 1; i++)
@@ -148,21 +113,21 @@ namespace Platformer.Components
                     Vector2.Distance(new Vector2(gridX, gridY), t1.Position / Globals.TileSize).CompareTo(
                         Vector2.Distance(new Vector2(gridX, gridY), t2.Position / Globals.TileSize)));
 
-                //foreach (Tile tile in tilesToCheck)
-                //    tile.DebugDraw = true;
+                foreach (Tile tile in tilesToCheck)
+                    tile.DebugDraw = true;
 
                 Color[] colors = { Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue, Color.Purple, Color.White, Color.Gray, Color.Black };
-                int n = 0;
+                int colorNum = 0;
 
                 foreach (Tile tile in tilesToCheck)
                 {
-                    //tile.DebugColor = colors[n++];
-                    //tile.DebugDraw = true;
+                    tile.DebugColor = colors[colorNum++];
+                    tile.DebugDraw = true;
 
                     float angle;
-                    tile.getIntersectionData(position, position + new Vector2(xSpeed, ySpeed), out poi, out angle, out wallNormal);
+                    tile.getIntersectionData(position, position + new Vector2(xSpeed, ySpeed), out intersectionPoint, out angle, out wallNormal);
 
-                    if (poi != null)
+                    if (intersectionPoint != null)
                     {
                         this.rotation = angle;
                         tile.DebugDraw = true;
@@ -176,11 +141,11 @@ namespace Platformer.Components
             }
 
             /* Update the bullet's position based on its speed */
-            if (poi == null)
+            if (intersectionPoint == null)
                 position += new Vector2(xSpeed, ySpeed);
             else
             {
-                position = Vector2.Lerp(position, (Vector2)poi, 0.2f);
+                position = Vector2.Lerp(position, (Vector2)intersectionPoint, 0.2f);
 
                 if (wallNormal > 0 && wallNormal < 180)
                     position.Y += 3f;
@@ -193,8 +158,6 @@ namespace Platformer.Components
 
                 else if (wallNormal > 270 || wallNormal < 90)
                     position.X += 3f;
-                
-                //Console.WriteLine("wallNormal = {0}", wallNormal);
             }
 
             if (bounces <= 0)

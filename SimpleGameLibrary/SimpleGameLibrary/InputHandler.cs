@@ -164,21 +164,21 @@ namespace SimpleGameLibrary
 
         #region GamePad Region
 
-        public static bool ButtonPressed(Buttons button, PlayerIndex index)
+        public static bool ButtonPressed(Buttons button, PlayerIndex playerIndex)
         {
-            return gamePadStates[(int)index].IsButtonDown(button) &&
-                lastGamePadStates[(int)index].IsButtonUp(button);
+            return gamePadStates[(int)playerIndex].IsButtonDown(button) &&
+                lastGamePadStates[(int)playerIndex].IsButtonUp(button);
         }
 
-        public static bool ButtonReleased(Buttons button, PlayerIndex index)
+        public static bool ButtonReleased(Buttons button, PlayerIndex playerIndex)
         {
-            return gamePadStates[(int)index].IsButtonUp(button) &&
-                lastGamePadStates[(int)index].IsButtonDown(button);
+            return gamePadStates[(int)playerIndex].IsButtonUp(button) &&
+                lastGamePadStates[(int)playerIndex].IsButtonDown(button);
         }
 
-        public static bool ButtonDown(Buttons button, PlayerIndex index)
+        public static bool ButtonDown(Buttons button, PlayerIndex playerIndex)
         {
-            return gamePadStates[(int)index].IsButtonDown(button);
+            return gamePadStates[(int)playerIndex].IsButtonDown(button);
         }
 
         #endregion

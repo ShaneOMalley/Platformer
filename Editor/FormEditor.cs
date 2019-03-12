@@ -19,7 +19,7 @@ using SimpleGameLibrary;
 
 namespace Editor
 {
-    public partial class Form1 : Form
+    public partial class FormEditor : Form
     {
         private LevelData levelData;
         private Image tileSheet;
@@ -36,7 +36,7 @@ namespace Editor
         private int cameraX = 0;
         private int cameraY = 0;
 
-        public Form1()
+        public FormEditor()
         {
             InitializeComponent();
             
